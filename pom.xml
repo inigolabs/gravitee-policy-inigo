@@ -27,6 +27,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+<!-- 
+    <repositories>
+        <repository>
+            <id>lib_id</id>
+            <url>file://../inigo-jv/target</url>
+        </repository>
+    </repositories> -->
 
     <dependencyManagement>
         <dependencies>
@@ -79,7 +86,7 @@
         <dependency>
             <groupId>com.inigolabs</groupId>
             <artifactId>inigo-jv</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.2</version>
         </dependency>
 
         <!-- Logging -->

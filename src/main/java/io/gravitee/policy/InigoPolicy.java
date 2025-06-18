@@ -1,6 +1,5 @@
 package io.gravitee.policy;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.inigolabs.Foreign;
 import com.inigolabs.Inigo;
 import io.gravitee.gateway.api.ExecutionContext;
@@ -16,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class InigoPolicy {
-    private final ObjectMapper objectMapper = new ObjectMapper();
     private final long instance;
 
     public InigoPolicy(InigoPolicyConfig configuration) {
@@ -50,20 +48,12 @@ public class InigoPolicy {
 
             @Override
             public void end() {
-                String headers = "";
-                try {
-                    headers = objectMapper.writeValueAsString(request.headers());
-                } catch (Exception e) {
-                    System.err.println("ERROR: Failed to serialize headers: " + e.getMessage());
-                }
-
-                var inigoRequest = Foreign.ProcessRequest(instance, "", headers, buffer.toString());
+                var inigoRequest = Foreign.ProcessRequest(instance, null, request.headers(), buffer.getBytes());
                 if (inigoRequest == null) {
                     log.error("Inigo request processing failed, returning error response");
-                    context.response().status(500).end(Buffer.buffer("Inigo request processing failed")); // TODO: fix for chain
+                    chain.streamFailWith(PolicyResult.failure(500, "Inigo request processing failed"));
                     return;
                 }
-
                 chain.streamFailWith(PolicyResult.build(inigoRequest.StatusCode(), null, inigoRequest.Output(), null, "application/json"));
             }
         };
