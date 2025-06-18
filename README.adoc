@@ -1,0 +1,53 @@
+= Gravitee Inigo GraphQL Security Policy
+
+== Description
+
+The Inigo GraphQL Security Policy provides comprehensive security, observability, and governance for GraphQL APIs. This policy integrates with the Inigo platform to deliver:
+
+* **Query Analysis & Validation**: Deep inspection of GraphQL queries for malicious patterns
+* **Rate Limiting**: Advanced rate limiting based on query complexity and depth
+* **Schema Governance**: Enforce schema policies and breaking change detection  
+* **Security Protection**: Protection against common GraphQL attacks (DoS, introspection abuse, etc.)
+* **Observability**: Detailed metrics, tracing, and analytics for GraphQL operations
+* **Federation Support**: Full support for GraphQL Federation and subgraph services
+
+The policy processes incoming GraphQL requests through the Inigo security engine before they reach your GraphQL backend, ensuring only safe and compliant queries are executed.
+
+NOTE: This policy requires APIM 4.0.0 or later and an active Inigo service token from https://app.inigo.io
+
+== Setup
+
+1. **Get Inigo Token**: Sign up at https://app.inigo.io and generate a service token
+2. **Prepare Schema**: Have your GraphQL schema ready in SDL format (optional but recommended)
+3. **Configure Policy**: Add the policy to your API with the required token
+4. **Test**: Send GraphQL queries through your Gravitee gateway
+
+== Features
+
+=== Security Protection
+* Query depth limiting to prevent DoS attacks
+* Query complexity analysis and blocking
+* Introspection query filtering
+* Malicious pattern detection
+* Field-level access control
+
+=== Observability
+* Real-time GraphQL metrics and analytics
+* Query performance tracking
+* Error rate monitoring  
+* Schema usage insights
+* Custom dashboards in Inigo platform
+
+=== Governance
+* Schema change impact analysis
+* Breaking change detection
+* Deprecation tracking
+* Usage-based schema optimization
+
+== Troubleshooting
+
+* **Policy not working**: Verify your Inigo token is valid and has the correct permissions
+* **Schema errors**: Ensure your SDL schema is valid GraphQL syntax
+* **Federation issues**: Check that federation mode is enabled and schema includes proper federation directives
+
+For additional support, visit the Inigo documentation at https://docs.inigo.io

@@ -1,0 +1,32 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "token": {
+            "title": "Inigo Service Token",
+            "description": "Authentication token for your service generated from https://app.inigo.io",
+            "type": "string",
+            "default": ""
+        },
+        "schema": {
+            "title": "Schema Definition",
+            "description": "Your GraphQL schema definition in Schema Definition Language (SDL) format",
+            "type": "string",
+            "default": ""
+        },
+        "federation": {
+            "title": "GraphQL Federation",
+            "description": "Enable federation mode for subgraph services in a federated GraphQL setup",
+            "type": "boolean",
+            "default": false
+        },
+        "federationExample": {
+            "title": "GraphQL Federation Example",
+            "description": "Use the Starwars example schema",
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "required": ["token"]
+}

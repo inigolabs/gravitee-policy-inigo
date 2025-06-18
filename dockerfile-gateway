@@ -1,0 +1,12 @@
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
+WORKDIR /gravitee
+
+RUN git clone --depth 1 https://github.com/gravitee-io/gateway.git .
+RUN mvn clean install -DskipTests
+
+FROM eclipse-temurin:21-jre
+COPY --from=builder /gravitee/gravitee-apim-gateway/gravitee-apim-gateway-standalone/gravitee-apim-gateway-standalone-distribution/target/distribution /opt/graviteeio-gateway
+
+WORKDIR /opt/graviteeio-gateway/bin
+EXPOSE 8082
+ENTRYPOINT ["./gravitee"]
